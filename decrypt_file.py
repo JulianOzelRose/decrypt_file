@@ -14,17 +14,12 @@ while True:
     if line == "":
         break
 
-    for ch in line:
-        ordVal = ord(ch)
-        cipherVal = ordVal - distance
-
-        if cipherVal < ord('a'):
-            cipherVal = ord('z') - (distance - (ord('a') - ordVal - 1))
-        if ch == "#":
-            plainTxt += " "
+    for i in range(len(line)):
+        char = line[i]
+        if char.isupper():
+            plainTxt += chr((ord(char) - distance - 65) % 26 + 65)
         else:
-            plainTxt += chr(cipherVal)
+            plainTxt += chr((ord(char) - distance - 97) % 26 + 97)
 
-    print(plainTxt)
-    
 inputFile.close()
+print(plainTxt)
